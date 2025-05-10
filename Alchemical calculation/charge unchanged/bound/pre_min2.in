@@ -1,6 +1,6 @@
 Minimization
  &cntrl
-  imin = 1, ntmin = 2, maxcyc = 100000,
+  imin = 1, ntmin = 2, maxcyc = 50000,
   ntb = 1, ntpr = 10000, ntwe = 10000,
   cut = 10, ioutfm = 1,
   icfe = 1, ifsc = 1, logdvdl = 0,
