@@ -1,0 +1,49 @@
+#PBS -N AlaScanIE
+#PBS -j eo
+#PBS -q normal
+#PBS -V
+#PBS -l nodes=1:ppn=20
+#PBS -l mem=28gb
+
+###Create WorkDir
+export WORKDIR=/scratch/${PBS_JOBID}
+mkdir -p $WORKDIR
+if [ $? -ne 0 ];then
+    echo "WORKDIR Create Failed!";exit
+fi
+cd $WORKDIR
+
+###Echo Job Information
+JobID=`echo ${PBS_JOBID} | awk -F "." '{print $1}'`
+NodeName=`head -n 1 ${PBS_NODEFILE}`
+Processors=`cat ${PBS_NODEFILE} | wc -l`
+echo "JobID="${JobID} >> ${PBS_O_WORKDIR}"/PBS.log"
+echo "OrginalDir="${PBS_O_WORKDIR} >> ${PBS_O_WORKDIR}"/PBS.log"
+echo "WorkDir="${WORKDIR} >> ${PBS_O_WORKDIR}"/PBS.log"
+echo "Node="$NodeName >> ${PBS_O_WORKDIR}"/PBS.log"
+echo "" >> ${PBS_O_WORKDIR}"/PBS.log"
+
+###Set Environment Variables
+export PATH=/share/apps/openmpi/bin:$PATH
+export LD_LIBRARY_PATH=/share/apps/openmpi/lib:$LD_LIBRARY_PATH
+export PATH=/home/jxbao/Fortran/bin:$PATH
+source /share/apps/amber16/amber.sh
+
+###Copy Files to WorkDir
+cp -rfL ${PBS_O_WORKDIR} .
+
+###Run Alanine Scanning
+Folder=${PBS_O_WORKDIR##*/}
+cd $Folder
+bash Step1_RunPrepare_IE.sh
+bash Step2_RunCalculate_IE.sh
+bash Step3_GetResult_IE.sh
+cd ..
+
+###Move Result Files Back
+cp -rf *_* ${PBS_O_WORKDIR}/../
+cp -f $Folder/NearResidue.dat ${PBS_O_WORKDIR}
+cp -f $Folder/AlaScan_IE.dat ${PBS_O_WORKDIR}
+
+###Remove WorkDir
+rm -rf $WORKDIR
