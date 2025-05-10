@@ -1,6 +1,6 @@
 Minimization with position restraint
  &cntrl
-  imin = 1, ntmin = 2, maxcyc = 100000,
+  imin = 1, ntmin = 2, maxcyc = 50000,
   ntpr = 10000, ntwe = 10000,
   ntr = 1, restraint_wt = 100.0,
   restraintmask = '!:WAT & !@H=  ',
