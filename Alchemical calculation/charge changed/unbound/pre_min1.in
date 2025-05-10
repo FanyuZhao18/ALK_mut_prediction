@@ -1,0 +1,28 @@
+Minimization with position restraint
+ &cntrl
+  imin = 1, ntmin = 2, maxcyc = 50000,
+  ntpr = 10000, ntwe = 10000,
+  ntr = 1, restraint_wt = 10.0,
+  restraintmask = '!:WAT & !@H=  ',
+  cut = 10, iwrap = 1, ioutfm = 1,
+  icfe = 1, ifsc = 1, logdvdl = 0,
+  timask1=':310',
+  timask2=':111',
+  scmask1=':310 & !@CA,C,N,O', 
+  scmask2=':111 & !@CA,C,N,O',
+  scalpha= 0.5,scbeta= 1
+  clambda=0.5,
+  gti_cut         = 1
+  gti_output      = 1
+  gti_add_sc      = 5
+  gti_scale_beta  = 1
+  gti_cut_sc_on   = 8
+  gti_cut_sc_off  = 10
+  gti_lam_sch     = 1
+  gti_ele_sc      = 1
+  gti_vdw_sc      = 1
+  gti_cut_sc      = 2
+  gti_ele_exp     = 2
+  gti_vdw_exp     = 2
+&end
+ /
