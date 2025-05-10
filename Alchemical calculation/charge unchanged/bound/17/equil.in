@@ -1,0 +1,16 @@
+Equilibration with CPU
+ &cntrl
+  imin = 0, nstlim = 5000000, irest = 1, ntx = 5, dt = 0.001,
+  ntt = 3, temp0 = 300.0, tempi  = 300.0, gamma_ln=2, ig = -1,
+  ntc = 2, ntf = 1,
+  ntb = 1, cut = 10, tautp = 2.0, nscm=1000,
+  ntwe = 20000, ntpr = 20000, ntwr = 20000,
+  ioutfm = 1,
+  icfe = 1, ifsc = 1, logdvdl = 0,
+  timask1=':310',
+  timask2=':88',
+  scmask1=':310 & !@CA,C,N,O', 
+  scmask2=':88 & !@CA,C,N,O',
+  clambda=0.8493,
+&end
+/

@@ -1,0 +1,13 @@
+Minimization
+ &cntrl
+  imin = 1, ntmin = 2, maxcyc = 100000,
+  ntb = 1, ntpr = 10000, ntwe = 10000,
+  cut = 10, ioutfm = 1,
+  icfe = 1, ifsc = 1, logdvdl = 0,
+  timask1=':310',
+  timask2=':88',
+  scmask1=':310 & !@CA,C,N,O', 
+  scmask2=':88 & !@CA,C,N,O',
+  clambda=0.5,
+&end
+/
